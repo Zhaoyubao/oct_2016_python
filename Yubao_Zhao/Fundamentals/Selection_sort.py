@@ -16,12 +16,10 @@ def selection_sort(list):
     count = 0
     begin_time = datetime.now()
     for i in range(len(list)-1):
-        min = list[i]
         min_idx = i
         for j in range(i+1, len(list)):
             count += 1
-            if list[j] < min:
-                min = list[j]
+            if list[j] < list[min_idx]:
                 min_idx = j
         list[i], list[min_idx] = list[min_idx], list[i]
     end_time = datetime.now()
