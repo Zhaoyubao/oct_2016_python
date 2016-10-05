@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: #3e4e5a;
+    background-color: #eee;
+    font-family: arial;
+}
+div#wrapper {
+    width: 1150px;
+    margin: 50px auto;
+}
+    p#gold {
+        padding: 10px 0;
+    }
+        span {
+            width: 60px;
+            border: 2px solid #3e4e5a;
+            padding: 4px 10px;
+            margin-left: 20px;
+            display: inline-block;
+        }
+    div.block {
+        width: 250px;
+        height: 200px;
+        border: 2px solid #3e4e5a;
+        border-radius: 5px;
+        box-shadow: 1px 1px 2px gray;
+        margin: 15px 25px 25px 0;
+        display: inline-block;
+    }
+        h1 {
+            font-size: 1.5em;
+            text-align:center;
+            margin-top: 30px;
+        }
+        .block p {
+            text-align:center;
+            margin-top: 20px;
+        }
+        form {
+            text-align:center;
+            margin-top: 40px;
+        }
+            input {
+                font-size: 1em;
+                font-weight: bold;
+                color: #3e4e5a;
+                background-color: #eee;
+                border: 2px solid #3e4e5a;
+                border-radius: 5px;
+                outline: none;
+                cursor: pointer;
+                box-shadow: 2px 2px 4px #3e4e5a;
+                padding: 5px 15px;
+            }
+            input:hover {
+                color: #eee;
+                background-color: #3e4e5a;
+                box-shadow: 1px 1px 2px gray;
+            }
+    div#activity {
+        width:1070px;
+        height: 200px;
+        border: 2px solid #3e4e5a;
+        border-radius: 5px;
+        box-shadow: 1px 1px 2px gray;
+        overflow: auto;
+        margin-top: 10px;
+        padding: 10px 15px;
+    }
+        #activity p{
+            margin-bottom: 6px;
+        }
+        p#earn {
+            color: green;
+        }
+        p#lost {
+            color: red;
+        }
+    a {
+        font-size: 1em;
+        font-weight: bold;
+        color: #3e4e5a;
+        background-color: #eee;
+        border: 2px solid #3e4e5a;
+        border-radius: 5px;
+        outline: none;
+        text-decoration: none;
+        box-shadow: 2px 2px 4px #3e4e5a;
+        margin-top: 30px;
+        padding: 4px 20px;
+        display: inline-block;;
+    }
+    a:hover {
+        color: #eee;
+        background-color: #3e4e5a;
+        box-shadow: 1px 1px 2px gray;
+    }

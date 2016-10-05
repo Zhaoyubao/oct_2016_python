@@ -8,21 +8,23 @@ app.secret_key = "\x9eh\xb7;)\x10\xf0{\xb7\xf1\x95\xbb?Y*\xd4\x83Q\xfa\xa8\x14\x
 def index():
     if 'random' not in session:
         session['random'] = randint(1,100)
-    # print "Random:", session['random']
+    if 'guess' not in session:
+        session['guess'] = 0
+    if 'counter' not in session:
+        session['counter'] = 0
+    print "Random:", session['random']
     return render_template("index.html")
 
 @app.route('/process', methods = ['POST'])
 def process():
     if request.form['number']:
-        guess = int(request.form['number'])
-        # print "Guess:", guess
-    else:
-        return redirect('/')
-    return render_template("index.html", guess=guess)
+        session['guess'] = int(request.form['number'])
+        session['counter'] += 1
+    return redirect('/')
 
 @app.route('/restart')
 def restart():
-    session.pop('random')
+    session.clear()
     return redirect('/')
 
 if __name__ == '__main__':

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ninja Gold</title>
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="wrapper">
+        <p id="gold">Your Gold: <span>{{ session['gold'] }}</span></p>
+        <div class="block">
+            <h1>Farm</h1>
+            <p>(earns 10-20 golds)</p>
+            <form action="/process_money" method="post">
+                <input type="hidden" name="building" value="farm">
+                <input type="submit" value="Find Gold!">
+            </form>
+        </div>
+        <div class="block">
+            <h1>Cave</h1>
+            <p>(earns 5-10 golds)</p>
+            <form action="/process_money" method="post">
+                <input type="hidden" name="building" value="cave">
+                <input type="submit" value="Find Gold!">
+            </form>
+        </div>
+        <div class="block">
+            <h1>House</h1>
+            <p>(earns 2-5 golds)</p>
+            <form action="/process_money" method="post">
+                <input type="hidden" name="building" value="house">
+                <input type="submit" value="Find Gold!">
+            </form>
+        </div>
+        <div class="block">
+            <h1>Casino</h1>
+            <p>(earns/takes 0-50 golds)</p>
+            <form action="/process_money" method="post">
+                <input type="hidden" name="building" value="casino">
+                <input type="submit" value="Find Gold!">
+            </form>
+        </div>
+        <b>Activities</b>
+        <div id="activity">
+            {% for item in session['activity'] | reverse %}
+                <p id="{{ item.status }}">{{ item.log }}</p>
+            {% endfor %}
+        </div>
+        <a href="/reset">Reset</a>
+    </div>
+</body>
+</html>
