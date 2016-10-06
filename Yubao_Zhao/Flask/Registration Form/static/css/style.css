@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: arial, sans-serif;
+}
+html {
+    font-size: 20px;
+}
+    form {
+        width: 24rem;
+        border: 1px solid gray;
+        box-shadow: 0 0 5px silver;
+        border-radius: 4px;
+        padding: 1.5rem 0.5rem;
+        margin: 3rem 0 0 3rem;
+    }
+        form * {
+            font-size: 1rem;
+            display: inline-block;
+        }
+        label {
+            width: 9rem;
+            text-align: right;
+            margin-right: 0.5rem;
+        }
+        input {
+            width: 12rem;
+            font-size: 0.9rem;
+            outline: none;
+            border: 1px solid gray;
+            padding: 4px 8px;
+            margin-bottom: 1.3rem;
+        }
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 100px #fff inset;
+        }
+        button {
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 1px 1px 2px silver;
+            padding: 1px 4px;
+            margin-left: 18.5rem;
+        }
+        form p {
+            width: 93%;
+            background-color: #eee;
+            font-size: 0.75rem;
+            border: 1px solid silver;
+            margin: 20px 0 0 12px;
+            padding: 5px 10px;
+        }
+        form p span {
+            color: white;
+            background-color: gray;
+            font-weight: bold;
+            font-size: 0.7rem;
+            padding: 1px 7px;
+        }
+
+    p.info {
+        color: orangered;
+        font-size: 0.75rem;
+        position: absolute;
+    }
+    p#fname_error {
+        top: 125px;
+        left: 270px;
+    }
+    p#lname_error {
+        top: 181px;
+        left: 270px;
+    }
+    p#email_error {
+        top: 238px;
+        left: 270px;
+    }
+    p#pw_error {
+        top: 295px;
+        left: 270px;
+    }
+    p#confirm_error {
+        top: 352px;
+        left: 270px;
+    }
+    p#success {
+        color: green;
+        font-size: 1.2rem;
+        top: 90px;
+        left: 600px;
+    }

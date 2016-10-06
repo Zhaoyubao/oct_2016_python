@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration Form</title>
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <form action="/register" method="post">
+        <label for="fname">First Name:</label>
+        <input type="text" name="fname" id="fname">
+        <label for="lname">Last Name:</label>
+        <input type="text" name="lname" id="lname">
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email">
+        <label for="pw">Password:</label>
+        <input type="password" name="pw" id="pw">
+        <label for="confirm_pw">Confirm Password:</label>
+        <input type="password" name="confirm_pw" id="confirm_pw">
+        <button type="submit">Submit</button>
+        <p><span>!</span>&nbsp; All fields are required.Name should not contain any numbers.Passwords must be at least 8 characters in length and have at least 1 uppercase letter and 1 numeric value.</p>
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="info" id="{{ category }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
