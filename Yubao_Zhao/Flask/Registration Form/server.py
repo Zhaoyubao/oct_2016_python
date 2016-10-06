@@ -4,8 +4,8 @@ import re
 app = Flask(__name__)
 app.secret_key = "\xc2\xe6X]0gG\x96\x8d\xf0&\x8a\xb8\xb4\xf1 \xb5\xe7\xb5\n\xd9\xfb\xe9\x8b"
 
-NAME_REGEX = re.compile('^[a-zA-Z\s]+$')
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+SPACE_REGEX = re.compile('.*\s.*')
 PW_REGEX = re.compile(r'.*?[A-Z]+.*?[0-9]+|.*?[0-9]+.*?[A-Z]')
 
 @app.route('/')
@@ -14,48 +14,44 @@ def index():
 
 @app.route('/register', methods=['POST'])
 def register():
-    fname = request.form['fname']
-    lname = request.form['lname']
-    email = request.form['email']
-    pw = request.form['pw']
-    confirm_pw = request.form['confirm_pw']
-    valid = True
-    if not ''.join(fname.split(' ')):
-        flash("Please enter your first name!","fname_error")
-        valid = False
-    elif not NAME_REGEX.match(fname):
-        flash("First name is not valid!","fname_error")
-        valid = False
-
-    if not ''.join(lname.split(' ')):
-        flash("Please enter your last name!","lname_error")
-        valid = False
-    elif not NAME_REGEX.match(lname):
-        flash("Last name is not valid!","lname_error")
-        valid = False
-
-    if not ''.join(email.split(' ')):
-        valid = False
-        flash("Please enter your email!","email_error")
-    elif not EMAIL_REGEX.match(email):
-        valid = False
-        flash("Email is not valid!","email_error")
-
-    if not ''.join(pw.split(' ')):
-        valid = False
-        flash("Please create a new password.","pw_error")
-    elif not PW_REGEX.match(pw) or len(pw) <= 8:
-        valid = False
-        flash("Password is not valid!","pw_error")
-
-    if not confirm_pw == pw:
-        valid = False
-        flash("The passwords entered don't match.","confirm_error")
-
-    if valid:
-        msg = "Congratulations {}! You have registered successfully!".format(fname.capitalize())
+    errors = validate(request.form)
+    if not errors:
+        msg = "Congratulations {}! You have registered successfully!".format(request.form['fname'].capitalize())
         flash(msg, "success")
+    else:
+        generate_flashes(errors)
     return redirect('/')
+
+# Helper functions
+def validate(user):
+    errors = []
+    if not ''.join(user['fname'].split(' ')):
+        errors.append(("Please enter your first name!","fname_error"))
+    elif not user['fname'].isalpha():
+        errors.append(("First name is not valid!","fname_error"))
+
+    if not ''.join(user['lname'].split(' ')):
+        errors.append(("Please enter your first name!","lname_error"))
+    elif not user['lname'].isalpha():
+        errors.append(("Last name is not valid!","lname_error"))
+
+    if not ''.join(user['email'].split(' ')):
+        errors.append(("Please enter your email!","email_error"))
+    elif not EMAIL_REGEX.match(user['email']):
+        errors.append(("Email is not valid!","email_error"))
+
+    if not ''.join(user['pw'].split(' ')):
+        errors.append(("Please create a new password.","pw_error"))
+    elif not PW_REGEX.match(user['pw']) or len(user['pw']) <= 8 or SPACE_REGEX.match(user['pw']):
+        errors.append(("Password is not valid!","pw_error"))
+
+    if user['confirm_pw'] != user['pw']:
+        errors.append(("The passwords do not match.","confirm_error"))
+    return errors
+
+def generate_flashes(error_list):
+    for error in error_list:
+        flash(error[0], error[1])
 
 if __name__ == "__main__":
     app.run(debug=True)
