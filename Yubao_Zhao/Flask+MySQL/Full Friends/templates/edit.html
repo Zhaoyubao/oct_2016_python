@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Flask+MySQL">
+    <title>Edit Friends</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <table id="edit" width="740">
+        <tr id="header">
+            <th width="130">First Name</th>
+            <th width="130">Last name</th>
+            <th width="300">Email Address</th>
+            <th width="180" style="background-color:white"></th>
+        </tr>
+        <tr>
+            <td>{{ friend['first_name'] }}</td>
+            <td>{{ friend['last_name'] }}</td>
+            <td>{{ friend['email'] }}</td>
+        </tr>
+        <tr>
+            <td id="update" colspan="4">
+                <form id="update" action="/friends/{{ friend['id'] }}" method="post">
+                    <input id="edit_first" type="text" name="first_name" placeholder="First Name">
+                    <input id="edit_last" type="text" name="last_name" placeholder="Last Name">
+                    <input id="edit_email" type="text" name="email" placeholder="Email ex:name@example.com">
+                    <input id="update" type="submit" value="Update"><a id="back" href="/">Back</a>
+                </form>
+            </td>
+        </tr>
+    </table>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  		{% if messages %}
+	    	{% for category, message in messages %}
+				<p class="error" id='{{ category }}'>{{ message }}</p>
+	    	{% endfor %}
+  		{% endif %}
+	{% endwith %}
+</body>
+</html>

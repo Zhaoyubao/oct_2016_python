@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+form#create, table {
+    display: inline-block;
+    vertical-align: top;
+}
+form#create {
+    width: 320px;
+    color: #007db8;
+    border: 1px solid #007db8;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px #ddd;
+    margin: 100px 0 0 50px;
+    padding: 15px;
+}
+    form#create p {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin: 0 0 5px 7px;
+    }
+    form#create input[type="text"]{
+        font-size: 1em;
+        color: #007db8;
+        border: 1px solid #007db8;
+        border-radius: 2px;
+        outline: none;
+        margin-bottom: 30px;
+        padding: 6px;
+    }
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 100px #fff inset;
+    }
+    #first, #last {
+        width: 130px;
+    }
+    #first {
+        margin-right: 20px;
+    }
+    #email {
+        width: 300px;
+    }
+    input#create {
+        font-size: 1em;
+        padding: 4px 8px;
+        margin-left: 240px;
+    }
+    input[type="submit"], a {
+        color: white;
+        background-color: #007db8;
+        border: 2px solid #007db8;
+        border-radius: 2px;
+        box-shadow: 2px 2px 2px #ccc;
+        outline: none;
+        cursor: pointer;
+    }
+    input[type='submit']:hover, a:hover {
+        color: #007db8;
+        background-color: white;
+        box-shadow: 4px 4px 6px #bbb;
+    }
+
+table#show {
+    color: #007db8;
+    border-collapse: collapse;
+    margin: 100px 0 0 40px;
+}
+    tr#header {
+        color: white;
+        background-color: #007db8;
+        font-size: 0.9em;
+    }
+    tr:nth-of-type(even) {
+        background-color: #f5fafe;
+    }
+        th, td {
+            height: 40px;
+            text-align: center;
+        }
+            a.edit, form.del {
+                display: inline-block;
+            }
+            a.edit {
+                width: 45px;
+                font-size: 0.8em;
+                font-weight: bold;
+                text-decoration: none;
+                margin-right: 10px;
+                padding: 2px;
+            }
+                form.del input {
+                    width: 50px;
+                    font-size: 0.8em;
+                    font-weight: bold;
+                    padding: 2px;
+                }
+table#edit {
+    color: #007db8;
+    border-collapse: collapse;
+    margin: 100px 0 0 447px;
+}
+    td#update {
+        text-align: left;
+    }
+        form#update input[type="text"] {
+            color: #007db8;
+            font-size: 1em;
+            border: 1px solid #007db8;
+            border-radius: 2px;
+            outline: none;
+            padding: 3px;
+        }
+        input#edit_first {
+            width: 90px;
+            margin-left: 18px;
+        }
+        input#edit_last {
+            width: 90px;
+            margin-left: 27px;
+        }
+        input#edit_email {
+            width: 260px;
+            margin-left: 30px;
+        }
+        input#update, a#back {
+            display: inline-block;
+        }
+        a#back {
+            font-size: 0.9em;
+            font-weight: bold;
+            text-decoration: none;
+            margin-left: 10px;
+            padding: 2px 10px;
+        }
+        input#update {
+            font-size: 0.9em;
+            font-weight: bold;
+            padding: 2px 4px;
+            margin-left: 35px;
+        }
+p.error {
+    color: orangered;
+    font-size: 0.7em;
+    position: absolute;
+}
+p#fname_error {
+    left: 66px;
+    top: 180px;
+}
+p#lname_error {
+    left: 233px;
+    top: 180px;
+}
+p#email_error {
+    left: 66px;
+    top: 242px;
+}
+p#fname_update_error {
+    left: 454px;
+    top: 220px;
+}
+p#lname_update_error {
+    left: 585px;
+    top: 220px;
+}
+p#email_update_error {
+    left: 732px;
+    top: 220px;
+}

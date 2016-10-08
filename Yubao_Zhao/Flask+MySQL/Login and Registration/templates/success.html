@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Flask+MySQL">
+    <title>Login and Registration</title>
+    <link rel="stylesheet" type="text/css" href="../static/success.css">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='success.css') }}"> -->
+</head>
+<body>
+    <div>
+        <h2>CodingDojo</h2>
+        <a href="/logout">Logout</a>
+        <p>Welcome {{ user['first_name'].capitalize() }} !</p>
+    </div>
+    <table width="770">
+        <tr id="header">
+            <th width="140">First Name</th>
+            <th width="140">Last name</th>
+            <th width="280">Email Address</th>
+            <th width="210">Created Time</th>
+        </tr>
+        <tr>
+            <td>{{ user['first_name'].capitalize() }}</td>
+            <td>{{ user['last_name'].capitalize() }}</td>
+            <td>{{ user['email'] }}</td>
+            <td>{{ user['created_at'] }}</td>
+        </tr>
+    </table>
+</body>
+</html>
