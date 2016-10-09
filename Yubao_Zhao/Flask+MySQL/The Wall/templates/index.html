@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Flask+MySQL">
+    <title>Login and Registration</title>
+    <!-- <link rel="stylesheet" type="text/css" href="../static/main.css"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <form id="login" action="/login" method="post">
+        <h2>Welcome Back!</h2>
+        <input id="log_email" type="text" name="email" placeholder="Email Address">
+        <input id="log_pw" type="password" name="pw" placeholder="Password">
+        <button id="login" type="submit">Login</button>
+    </form>
+    <form id="register" action="/register" method="post">
+        <h2>Don't have an account?</h2>
+        <input id="first" type="text" name="first_name" placeholder="First Name">
+        <input id="last" type="text" name="last_name" placeholder="Last Name">
+        <input id="email" type="text" name="email" placeholder="Email Address &nbsp;&nbsp;&nbsp;ex:name@example.com">
+        <p><span>i</span> Name must be at least 2 characters and letters only. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Passwords must be at least 8 characters in length.</p>
+        <input id="pw" type="password" name="pw" placeholder="Enter Password">
+        <input id="confirm_pw" type="password" name="confirm_pw" placeholder="Re-enter Password">
+        <button id="register" type="submit">Register</button>
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  		{% if messages %}
+	    	{% for category, message in messages %}
+				<p class="error" id="{{ category }}">{{ message }}</p>
+	    	{% endfor %}
+  		{% endif %}
+	{% endwith %}
+</body>
+</html>

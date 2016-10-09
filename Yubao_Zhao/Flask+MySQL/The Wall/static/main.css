@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+    color: #3c4c5b;
+}
+form {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 1px 1px 2px #ddd;
+    display: inline-block;
+    vertical-align: top;
+    margin: 50px 0 0 40px;
+}
+    h2 {
+        font-weight: normal;
+        margin-bottom: 15px;
+    }
+    input {
+        font-size: 0.9em;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        outline: none;
+        margin-bottom: 30px;
+        padding: 6px 5px;
+    }
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 100px #fff inset;
+    }
+    button {
+        color: white;
+        background-color: #007db8;
+        font-size: 0.9em;
+        font-weight: bold;
+        border: 1px solid #007db8;
+        border-radius: 2px;
+        box-shadow: 1px 1px 2px #ccc;
+        padding: 4px 8px;
+        margin-left: 255px;
+    }
+    button:hover {
+        color: #007db8;
+        cursor: pointer;
+        background-color: white;
+    }
+form#login {
+    width: 315px;
+    padding: 15px 15px;
+}
+    #log_email, #log_pw {
+        width: 300px;
+    }
+form#register {
+    width: 335px;
+    padding: 15px 15px;
+}
+    #first, #last {
+        width: 140px;
+    }
+    #last {
+        margin-left: 25px;
+    }
+    #email {
+        width: 320px;
+    }
+    #pw, #confirm_pw {
+        width: 180px;
+    }
+    p {
+        width: 330px;
+        font-size: 0.8em;
+        margin-bottom: 10px;
+    }
+        span {
+            color: white;
+            background-color: #007db8;
+            font-weight: bold;
+            border-radius: 2px;
+            padding: 1px 7px;
+        }
+p.error {
+    font-size: 0.8em;
+    color: orangered;
+    position: absolute;
+}
+#fname_error {
+    top: 145px;
+    left: 450px;
+}
+#lname_error {
+    top: 145px;
+    left: 630px;
+}
+#email_error, #reg_error {
+    top: 204px;
+    left: 450px;
+}
+#pw_error {
+    top: 305px;
+    left: 450px;
+}
+#confirm_error {
+    top: 365px;
+    left: 450px;
+}
+#login_user_error {
+    top: 145px;
+    left: 60px;
+}
+#login_pw_error {
+    top: 205px;
+    left: 60px;
+}

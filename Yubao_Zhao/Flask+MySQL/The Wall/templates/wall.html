@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Flask+MySQL">
+    <title>The Wall</title>
+    <!-- <link rel="stylesheet" type="text/css" href="../static/wall.css"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='wall.css') }}">
+    <script type="text/javascript">
+       function deleteConfirm() {
+           if (!confirm("Confirm Delete?")) {
+               window.event.returnValue = false;
+           }
+       }
+   </script>
+<body>
+    <div>
+        <h2>CodingDojo Wall</h2>
+        <a href="/logout">Logout</a>
+        <span>Welcome {{ user['first_name'] }} !</span>
+    </div>
+    {% with msgs = get_flashed_messages() %}
+  		{% if msgs %}
+	    	{% for msg in msgs %}
+				<p class="error">{{ msg }}</p>
+	    	{% endfor %}
+  		{% endif %}
+	{% endwith %}
+    <form id="message" action="/message" method="post">
+        <p>Post a message</p>
+        <textarea name="message"></textarea>
+        <input type="submit" value="Post a message">
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+            <p class="msg_user">{{ message['first_name'] }} {{ message['last_name'] }} - </p><span id="msg_created">{{ message['msg_created'] }}</span>
+            {% if message['user_id'] == session['user']['id'] and message['time_offset'] <= 30 %}
+                <a id="msg_del" href="/message/{{ message['msg_id'] }}/delete" onClick=deleteConfirm()>Delete</a>
+            {% endif %}
+            <p class="message">{{ message['message'] }}</p>
+            {% if comments %}
+                {% for comment in comments %}
+                    {% if message['msg_id'] == comment['msg_id'] %}
+                        <p class="comment_user">{{ comment['first_name'] }} {{ comment['last_name'] }} - </p><span id="comment_created">{{ comment['comment_created'] }}</span>
+                        {% if comment['user_id'] == session['user']['id'] and comment['time_offset'] <= 30 %}
+                            <a id="comment_del" href="/comment/{{ comment['com_id'] }}/delete" onClick=deleteConfirm()>Delete</a>
+                        {% endif %}
+                        <p class="comment">{{ comment['comment'] }}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            <form id="comment" action="/comment/{{ message['msg_id'] }}" method="post">
+                <p>Post a comment</p>
+                <textarea name="comment"></textarea>
+                <input type="submit" value="Post a comment">
+            </form>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
