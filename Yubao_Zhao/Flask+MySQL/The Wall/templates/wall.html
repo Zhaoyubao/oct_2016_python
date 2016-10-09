@@ -35,7 +35,12 @@
     </form>
     {% if messages %}
         {% for message in messages %}
-            <p class="msg_user">{{ message['first_name'] }} {{ message['last_name'] }} - </p><span id="msg_created">{{ message['msg_created'] }}</span>
+            <p class="msg_user">{{ message['first_name'] }} {{ message['last_name'] }} - </p>
+            {% if message['offset'] %}
+                <span id="msg_created">{{ message['offset'] }}</span>
+            {% else %}
+                <span id="msg_created">{{ message['msg_created'] }}</span>
+            {% endif %}
             {% if message['user_id'] == session['user']['id'] and message['time_offset'] <= 30 %}
                 <a id="msg_del" href="/message/{{ message['msg_id'] }}/delete" onClick=deleteConfirm()>Delete</a>
             {% endif %}
@@ -43,7 +48,12 @@
             {% if comments %}
                 {% for comment in comments %}
                     {% if message['msg_id'] == comment['msg_id'] %}
-                        <p class="comment_user">{{ comment['first_name'] }} {{ comment['last_name'] }} - </p><span id="comment_created">{{ comment['comment_created'] }}</span>
+                        <p class="comment_user">{{ comment['first_name'] }} {{ comment['last_name'] }} - </p>
+                        {% if comment['offset'] %}
+                            <span id="comment_created">{{ comment['offset'] }}</span>
+                        {% else %}
+                            <span id="comment_created">{{ comment['comment_created'] }}</span>
+                        {% endif %}
                         {% if comment['user_id'] == session['user']['id'] and comment['time_offset'] <= 30 %}
                             <a id="comment_del" href="/comment/{{ comment['com_id'] }}/delete" onClick=deleteConfirm()>Delete</a>
                         {% endif %}

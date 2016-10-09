@@ -16,13 +16,13 @@ queries = {
         "create" : "INSERT INTO users (first_name, last_name, email, pw_hash, created_at, updated_at) VALUES (:first, :last, :email, :pw, NOW(), NOW())"
     },
     "message" : {
-        "select" : "SELECT users.id AS user_id, messages.id AS msg_id, first_name, last_name, message, TIMESTAMPDIFF(MINUTE, messages.created_at, NOW()) AS time_offset, DATE_FORMAT(messages.created_at, '%M %D %Y, %l:%i %p') AS msg_created FROM users JOIN messages ON messages.user_id = users.id ORDER BY messages.created_at DESC",
+        "select" : "SELECT users.id AS user_id, messages.id AS msg_id, first_name, last_name, message, TIMESTAMPDIFF(MINUTE, messages.created_at, NOW()) AS time_offset, TIMESTAMPDIFF(MINUTE, messages.created_at, NOW()) AS offset, DATE_FORMAT(messages.created_at, '%M %D %Y') AS msg_created FROM users JOIN messages ON messages.user_id = users.id ORDER BY messages.created_at DESC",
         "create" : "INSERT INTO messages (user_id, message, created_at, updated_at) VALUES (:user_id, :message, NOW(), NOW())",
         "select_del" : "SELECT * FROM messages WHERE TIMESTAMPDIFF(MINUTE, messages.created_at, NOW()) <= 30 and id =:id",
         "delete" : "DELETE FROM messages WHERE id = :id"
     },
     "comment" : {
-        "select" : "SELECT user_id, comments.id AS com_id, message_id AS msg_id, first_name, last_name, comment, TIMESTAMPDIFF(MINUTE, comments.created_at, NOW()) AS time_offset, DATE_FORMAT(comments.created_at, '%M %D %Y, %l:%i %p') AS comment_created FROM users JOIN comments ON users.id = comments.user_id ORDER BY comments.created_at",
+        "select" : "SELECT user_id, comments.id AS com_id, message_id AS msg_id, first_name, last_name, comment, TIMESTAMPDIFF(MINUTE, comments.created_at, NOW()) AS time_offset, TIMESTAMPDIFF(MINUTE, comments.created_at, NOW()) AS offset, DATE_FORMAT(comments.created_at, '%M %D %Y') AS comment_created FROM users JOIN comments ON users.id = comments.user_id ORDER BY comments.created_at",
         "create" : "INSERT INTO comments (user_id, message_id, comment, created_at, updated_at) VALUES (:id, :msg_id, :comment, NOW(), NOW())",
         "select_del" : "SELECT * FROM comments WHERE TIMESTAMPDIFF(MINUTE, comments.created_at, NOW()) <= 30 and id =:id",
         "delete" : "DELETE FROM comments WHERE id = :id"
@@ -74,9 +74,24 @@ def login():
 def wall():
     query = queries['message']['select']
     messages = db.query_db(query)
+    time_offset(messages)
     query = queries['comment']['select']
     comments = db.query_db(query)
+    time_offset(comments)
     return render_template('wall.html', user=session['user'], messages=messages, comments=comments)
+
+def time_offset(data_list):
+    if data_list:
+        for item in data_list:
+            offset = item['offset']
+            if offset >= 10080:       # 7 days
+                item['offset'] = ""
+            elif offset >= 1440:      # 24 hours
+                item['offset'] = "a day ago" if offset/1440 == 1 else str(offset/1440)+" days ago"
+            elif offset >= 60:        # 60 minutes
+                item['offset'] = "an hour ago" if offset/60 == 1 else str(offset/60)+" hours ago"
+            else:
+                item['offset'] = "a minute ago" if offset <= 1 else str(offset)+" minutes ago"
 
 @app.route('/message', methods=['POST'])
 def create_msg():
