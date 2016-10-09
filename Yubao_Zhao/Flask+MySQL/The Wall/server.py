@@ -19,6 +19,7 @@ queries = {
         "select" : "SELECT users.id AS user_id, messages.id AS msg_id, first_name, last_name, message, TIMESTAMPDIFF(MINUTE, messages.created_at, NOW()) AS time_offset, TIMESTAMPDIFF(MINUTE, messages.created_at, NOW()) AS offset, DATE_FORMAT(messages.created_at, '%M %D %Y') AS msg_created FROM users JOIN messages ON messages.user_id = users.id ORDER BY messages.created_at DESC",
         "create" : "INSERT INTO messages (user_id, message, created_at, updated_at) VALUES (:user_id, :message, NOW(), NOW())",
         "select_del" : "SELECT * FROM messages WHERE TIMESTAMPDIFF(MINUTE, messages.created_at, NOW()) <= 30 and id =:id",
+        "delete_com" : "DELETE FROM comments WHERE message_id = :id",
         "delete" : "DELETE FROM messages WHERE id = :id"
     },
     "comment" : {
@@ -112,10 +113,13 @@ def delete_msg(id):
     if not msg:
         flash("You're not allowed to delete your message that was made more than 30 minutes!")
     else:
-        flash("Message deleted!")
+        query = queries['message']['delete_com']   # delete message's comments first
+        data = {'id': id}
+        db.query_db(query, data)
         query = queries['message']['delete']
         data = {'id': id}
         db.query_db(query, data)
+        flash("Message deleted!")
     return redirect('/wall')
 
 @app.route('/comment/<msg_id>', methods=['POST'])
