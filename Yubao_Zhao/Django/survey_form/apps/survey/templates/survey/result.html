@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dojo Survey</title>
+    <!-- <link rel="stylesheet" href="../../static/survey/css/style.css"> -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'survey/css/style.css' %}">
+</head>
+<body>
+    <p id="info">Hi,{{ request.session.username|upper }}! Thanks for submitting this form! You have submitted this form {{ request.session.count }} {% if request.session.count == 1 %}time{% else %}times{% endif %} now.</p>
+    <div>
+        <p>Submitted Info</p>
+        <ul id="item">
+            <li>Name:</li>
+            <li>Dojo Location:</li>
+            <li>Favorite Language:</li>
+            <li>Comment:</li>
+        </ul>
+        <ul id="user">
+            <li>{{ request.session.username|upper }}</li>
+            <li>{{ request.session.location }}</li>
+            <li>{{ request.session.language }}</li>
+            <li>{{ request.session.comment }}</li>
+        </ul>
+        <a href="/">Go Back</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Random Word Generator</title>
+    <!-- <link rel="stylesheet" href="../../static/generator/css/style.css"> -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'generator/css/style.css' %}">
+</head>
+<body>
+    <p>
+        <span>Random Word</span>
+        {% if request.session.count > 0 %}
+        <span>(Attempt #{{ request.session.count }})</span>
+        {% endif %}
+    </p>
+    <div>{{ request.session.word }}</div>
+    <form action="/generate" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Generate">
+    </form>
+    <a href="/reset">Reset</a>
+</body>
+</html>
