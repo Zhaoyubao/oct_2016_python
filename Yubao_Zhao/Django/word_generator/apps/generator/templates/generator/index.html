@@ -16,11 +16,12 @@
         <span>(Attempt #{{ request.session.count }})</span>
         {% endif %}
     </p>
-    <div>{{ request.session.word }}</div>
-    <form action="/generate" method="post">
+    <div>{{ word }}</div>
+    <!-- <form action="/generate" method="post">
         {% csrf_token %}
         <input type="submit" value="Generate">
-    </form>
+    </form> -->
+    <a href="/">Generate</a>
     <a href="/reset">Reset</a>
 </body>
 </html>

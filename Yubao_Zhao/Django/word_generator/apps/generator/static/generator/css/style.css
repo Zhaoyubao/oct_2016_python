@@ -21,23 +21,6 @@ div {
     border: 2px solid #3c4c5b;
     border-radius: 2px;
 }
-form {
-    text-align: center;
-}
-    input {
-        color: white;
-        font-size: 1.2em;
-        background-color: #009ac7;
-        border: none;
-        border-radius: 2px;
-        outline: none;
-        box-shadow: 1px 1px 2px #ccc;
-        padding: 4px 10px;
-    }
-    input:hover {
-        cursor: pointer;
-        background-color: #007394;
-    }
 a {
     color: #009ac7;
     font-size: 1.2em;
