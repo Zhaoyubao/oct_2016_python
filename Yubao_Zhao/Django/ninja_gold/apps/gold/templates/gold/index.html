@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ninja Gold</title>
+    <!-- <link rel="stylesheet" href="../../static/gold/css/main.css">
+    <link rel="shortcut icon" href="../../static/gold/images/favicon.ico"> -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'gold/css/main.css' %}">
+    <link rel="icon" href="{% static 'gold/images/favicon.ico' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <p id="gold">Your Gold: {{ request.session.gold }}</p>
+        <div class="block">
+            <b>Farm</b>
+            <i>+10-20 Golds</i>
+            <form action="/process_money/farm" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Search!">
+            </form>
+        </div>
+        <div class="block">
+            <b>Cave</b>
+            <i>+5-10 Golds</i>
+            <form action="/process_money/cave" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Search!">
+            </form>
+        </div>
+        <div class="block">
+            <b>House</b>
+            <i>+earns 2-5 Golds</i>
+            <form action="/process_money/house" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Search!">
+            </form>
+        </div>
+        <div class="block">
+            <b>Casino</b>
+            <i>&plusmn;0-50 Golds</i>
+            <form action="/process_money/casino" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Search!">
+            </form>
+        </div>
+        <div id="action">
+            <b>Actions</b>
+            <div>
+            {% for action in request.session.action reversed %}
+                <p id="{{ action.0 }}">{{ action.1 }}</p>
+            {% endfor %}
+            </div>
+            <a href="/reset">Reset</a>
+        </div>
+    </div>
+</body>
+</html>
