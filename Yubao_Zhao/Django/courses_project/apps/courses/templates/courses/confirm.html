@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Courses</title>
+    <!-- <link rel="stylesheet" href="../../static/courses/css/main.css"> -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'courses/css/main.css' %}">
+</head>
+<body>
+    <form id="confirm" action="{% url 'destroy_course' course.id %}" method="post">{% csrf_token %}
+        <h2>Are you sure you want to delete the following course?</h2>
+        <span>Name:</span><p>{{ course.name }}</p>
+        <span>Description:</span><p id="desc">{{ course.description.content }}</p>
+        <span>Comment:</span>
+        <ul>
+        {% for comment in comments %}
+            <li>{{ comment.content }}</li>
+        {% endfor %}
+        </ul>
+        <a href="/">No</a>
+        <button type="submit">Yes!I want delete this</button>
+    </form>
+</body>
+</html>

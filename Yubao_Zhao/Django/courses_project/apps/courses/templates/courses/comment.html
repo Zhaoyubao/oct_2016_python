@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Courses</title>
+    <!-- <link rel="stylesheet" href="../../static/courses/css/main.css"> -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'courses/css/main.css' %}">
+</head>
+<body>
+    <form id="comment" action="{% url 'create_comment' course.id %}" method="post">
+        {% csrf_token %}
+        <p>Course</p>
+        <span>Course:</span><p>{{ course.name }}</p>
+        <span>Description:</span><p id="desc">{{ course.description.content }}</p>
+        <span>Comment:</span>
+        <ul>
+        {% for comment in comments %}
+            <li>{{ comment.content }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ comment.created_at|date:"-M jS Y, g:ia" }}&nbsp;&nbsp;&nbsp;&nbsp; posted {{ comment.created_at|timesince }} ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/comments/{{ comment.id }}/destroy">Del</a></li>
+        {% endfor %}
+        </ul>
+        <label for="comm">Add comment:</label>
+        <textarea id="comm" name="comment"></textarea>
+        <button type="submit">Add</button>
+        <a href="/">Back</a>
+    </form>
+</body>
+</html>

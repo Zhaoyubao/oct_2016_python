@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Courses</title>
+    <!-- <link rel="stylesheet" href="../../static/courses/css/main.css"> -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'courses/css/main.css' %}">
+</head>
+<body>
+    <h3>Add a new course</h3>
+    <form id="create" action="/courses/create" method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="course">
+        <label for="desc">Description:</label>
+        <textarea id="desc" name="description"></textarea>
+        <button type="submit">Add</button>
+    </form>
+    <h3>Courses</h3>
+    <table>
+        <thead>
+            <tr>
+                <th width="250">Course Name</th>
+                <th width="350">Description</th>
+                <th width="220">Date Added</th>
+                <th width="180">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for c in courses %}
+            <tr>
+                <td>{{ c.name }}</td>
+                <td>{{ c.description.content }}</td>
+                <td>{{ c.created_at|date:"M jS Y, g:iA" }}</td>
+                <td>
+                    <!-- <a class="remove" href="/courses/{{ c.id }}/destroy">remove</a> -->
+                    <!-- <a class="comment" href="/comments/{{ c.id }}/show">commment</a> -->
+                    <a class="remove" href="{% url 'destroy_course' c.id %}">remove</a>
+                    <a class="comment" href="{% url 'show_comment' c.id %}">commment</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

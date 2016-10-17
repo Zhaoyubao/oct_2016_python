@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="DjangoII">
+    <title>Email Validation</title>
+    <!-- <link rel="stylesheet" href="../../static/validation/css/main.css"> -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'validation/css/main.css' %}">
+    <script type="text/javascript">
+       function deleteConfirm() {
+           if (!confirm("Confirm Delete?")) {
+               window.event.returnValue = false;
+           }
+       }
+   </script>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <h2{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h2>
+        {% endfor %}
+    {% endif %}
+    <!-- <h2 id="success">The email address you entered ({{ e.email }}) is a VALID email address. Thank you!</h2> -->
+    <h3>Email Addresses Entered:</h3>
+    <a id="back" href="/">Go Back</a>
+    <table>
+        <tbody>
+            {% for email in emails %}
+            <tr>
+                <td width="300">{{ email.email }}</td>
+                <td width="200">{{ email.created_at|date:'m/d/Y g:iA' }}</td>
+                <td width="100"><a href="{% url 'delete' email.id %}" onClick=deleteConfirm()>Del</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
