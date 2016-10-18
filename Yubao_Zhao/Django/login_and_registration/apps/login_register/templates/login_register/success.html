@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Django Lv2">
+    <title>Login and Registration</title>
+    <!-- <link rel="stylesheet" href="../../static/login_register/css/main.css"> -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'login_register/css/main.css' %}">
+</head>
+<body>
+    <h1>Welcome, {{ user.first_name|capfirst }} !</h1>
+    <a href="{% url 'logout' %}">Logout</a>
+    {% if messages %}
+        {% for message in messages %}
+            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <table>
+        <h3>User Info:</h3>
+        <tr>
+            <td width="100">Name:</td>
+            <td width="200">{{ user.first_name|title }} {{ user.last_name|title }}</td>
+        </tr>
+        <tr>
+            <td width="150">Email:</td>
+            <td width="200">{{ user.email }}</td>
+        </tr>
+    </table>
+</body>
+</html>
