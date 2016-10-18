@@ -48,7 +48,7 @@ class UserManager(models.Manager):
             return (False, errors)
         else:
             hashed = bcrypt.hashpw(pw.encode(), bcrypt.gensalt())
-            user = self.create(first_name=fname, last_name=lname, email=email, pw_hash=hashed)
+            user = self.create(first_name=fname, last_name=lname, email=email, dob=dob, pw_hash=hashed)
             return (True, user)
 
     def validate_log(self, input):
@@ -69,6 +69,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=55)
     last_name = models.CharField(max_length=55)
     email = models.CharField(max_length=100)
+    dob = models.CharField(max_length=55)
     pw_hash = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
