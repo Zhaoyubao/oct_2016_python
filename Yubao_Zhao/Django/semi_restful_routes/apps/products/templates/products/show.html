@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Semi-Restful Routes</title>
+    <!-- <link rel="stylesheet" href="../../static/products/css/main.css"> -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'products/css/main.css' %}">
+</head>
+<body>
+    <h2>Product {{ p.id }}</h2>
+    <table id="show">
+        <tr>
+            <td width="200">Name:</td>
+            <td width="300">{{ p.name }}</td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td>{{ p.description }}</td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td>{{ p.price }}</td>
+        </tr>
+    </table>
+    <a id="edit" href="{% url 'edit' p.id %}">Edit</a>
+    <a id="back" href="{% url 'index' %}">Back</a>
+</body>
+</html>

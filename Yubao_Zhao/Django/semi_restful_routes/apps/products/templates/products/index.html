@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Semi-Restful Routes</title>
+    <!-- <link rel="stylesheet" href="../../static/products/css/main.css"> -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'products/css/main.css' %}">
+    <script type="text/javascript">
+       function deleteConfirm() {
+           if (!confirm("Confirm Delete?")) {
+               window.event.returnValue = false;
+           }
+       }
+    </script>
+</head>
+<body>
+    <h2>Products</h2>
+    <table id="product">
+        <thead>
+            <tr>
+                <th width="150">Name</th>
+                <th width="300">Description</th>
+                <th width="150">Price</th>
+                <th width="250">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for p in products %}
+            <tr>
+                <td>{{ p.name }}</td>
+                <td>{{ p.description }}</td>
+                <td>${{ p.price }}</td>
+                <td><a class="show" href="{% url 'show' p.id %}">Show</a><a class="edit" href="{% url 'edit' p.id %}">Edit</a><a class="del" href="{% url 'destroy' p.id %}" onClick=deleteConfirm()>Remove</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a id="add" href="{% url 'new' %}">Add a new product</a>
+</body>
+</html>
