@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pokemon</title>
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            for(var i = 1; i <= 151; i++) {
+                $.get('http://pokeapi.co/api/v2/pokemon/' + i + '/', function(data){
+                    $("#pokedex").append("<div class='pokemon'><img src='" + data.sprites.front_default + "'><p>" + data.name + "</p></div>");
+                }, 'json');
+            }
+        });
+    </script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: arial;
+        }
+        .pokemon {
+            display: inline-block;
+        }
+        .pokemon * {
+            display: block;
+        }
+        div.pokemon {
+            width: 96px;
+            margin: 5px;
+        }
+            div p {
+                font-weight: bold;
+                text-align: center;
+            }
+    </style>
+</head>
+<body>
+    <h1>Pokemon</h1>
+    <div id="pokedex"></div>
+</body>
+</html>

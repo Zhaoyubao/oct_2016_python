@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Belt Reviewer">
+    <title>Book Reviews</title>
+    <!-- <link rel="stylesheet" href="../../static/books/css/profile.css"> -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'books/css/profile.css' %}">
+</head>
+<body>
+    <a id="back" href="/">Home</a>
+    <a  href="/books/new">Add Book and Review</a>
+    <a href="/logout">Logout</a>
+    <ul>
+        <li>User Alias:&nbsp;&nbsp; {{ user.alias|title }}</li>
+        <li>Name:&nbsp;&nbsp; {{ user.name|title }}</li>
+        <li>Email:&nbsp;&nbsp; {{ user.email }}</li>
+        <li>Totel Reviews:&nbsp;&nbsp; {{ count }}</li>
+    </ul>
+    <p>Posted Reviews on the following books:</p>
+    <ul id="books">
+        {% for book in books %}
+        <li><a href="/books/show/{{ book.id }}">{{ book.title|title }}</a></li>
+        {% endfor %}
+        <!-- {% for book_id, title in titles.items %}
+        <li><a href="/books/show/{{ book_id }}">{{ title|title }}</a></li>
+        {% endfor %} -->
+    </ul>
+</body>
+</html>

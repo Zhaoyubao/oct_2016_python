@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Belt Reviewer">
+    <title>Book Reviews</title>
+    <!-- <link rel="stylesheet" href="../../static/books/css/home.css"> -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'books/css/home.css' %}">
+</head>
+<body>
+    <h1>Welcome, {{ user.alias|title }} !</h1>
+    <a id="add" href="/books/new">Add Book and Review</a>
+    <a id="logout" href="/logout">Logout</a>
+    {% if messages %}
+        {% for message in messages %}
+            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <div id="wrapper">
+        <div id="recent">
+            <h3>Recent Book Reviews:</h3>
+            {% for review in reviews %}
+            <p><a href="/books/show/{{ review.book.id }}">{{ review.book.title|title }}</a></p>
+            <ul>
+                <li>Author: {{ review.book.author.name|title }}</li>
+                <li>Rating: <img src="../../static/books/images/{{ review.rating }}.png" alt="rating stars"></li>
+                <li><a href="/users/{{ review.user.id }}">{{ review.user.alias|title }}</a> says: &nbsp;{{ review.content }}</li>
+                <li>posted &nbsp;&nbsp;{{ review.created_at|timesince }} ago</li>
+                <!-- <li>Post on {{ review.created_at|date:'F d, Y' }}</li> -->
+            </ul>
+            {% endfor %}
+        </div>
+        <div id="others">
+            <h3>Other Books with Reviews:</h3>
+            <ul>
+            {% for book in books %}
+                <li><a href="/books/show/{{ book.id }}">{{ book.title|title }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

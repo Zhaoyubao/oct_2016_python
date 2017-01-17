@@ -1,0 +1,11 @@
+{% if 'error' not in result %}
+    <h2>Directions from {{ result['from'] }} to {{ result['to'] }}</h2>
+    <h3>{{ result['time'] }} ({{ result['distance'] }}les)</h3>
+    {% for step in result['steps'] %}
+        {% autoescape false%}
+        <p><b>{{ loop.index }}. </b>{{ step['html_instructions'] }}</p>
+        {% endautoescape %}
+    {% endfor %}
+{% else %}
+    <h2 id="error">{{ result['error'] }}</h2>
+{% endif %}

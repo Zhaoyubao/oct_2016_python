@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pokedex</title>
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            for(var i = 1; i <= 151; i++) {
+                var num = ("00"+i).slice(-3);
+                $("#pokedex").append("<div class='pokemon'><span id='num'>#" + num + "</span><img class='sprites' id='" + i + "' src='http://pokeapi.co/media/img/" + i + ".png' title='Click for details!'></div>");
+            }
+            $("#pokedex").on("click","img",function() {
+                var id = $(this).attr("id");
+                var url = 'http://pokeapi.co/api/v2/pokemon/' + id;
+                $.get(url, function(data){
+                    var html_str = "";
+                    var num = ("00"+id).slice(-3);
+                    html_str += "<h2>" + data.name + "</h2>";
+                    html_str += "<sup>#" + num + "</sup>";
+                    html_str += "\n<img src='http://pokeapi.co/media/img/" + id + ".png'>";
+                    html_str += "\n<h4>Type:</h4>\n<ul id='types'>";
+                    for(var i = 0; i < data.types.length; i++) {
+                        html_str += "\n\t<li>" + data.types[i].type.name + "</li>";
+                    };
+                    html_str += "\n</ul>\n<h4>Height:</h4>";
+                    html_str += "\n<p>" + data.height + "</p>";
+                    html_str += "\n<h4>Weight:</h4>";
+                    html_str += "\n<p>" + data.weight + "</p>";
+                    html_str += "\n<h4>Stats:</h4>\n<ul id='stats'>";
+                    html_str += "\n\t<li>HP:<span>" + data.stats[5].base_stat + "</span></li>";
+                    html_str += "\n\t<li>Attack:<span>" + data.stats[4].base_stat + "</span></li>";
+                    html_str += "\n\t<li>Defense:<span>" + data.stats[3].base_stat + "</span></li>";
+                    html_str += "\n\t<li>Sp.Atk:<span>" + data.stats[2].base_stat + "</span></li>";
+                    html_str += "\n\t<li>Sp.Def:<span>" + data.stats[1].base_stat + "</span></li>";
+                    html_str += "\n\t<li>Speed:<span>" + data.stats[0].base_stat + "</span></li>";
+                    html_str += "\n</ul>";
+                    console.log(html_str);
+                    $("#stats").html(html_str);
+                }, 'json');
+            });
+        });
+    </script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: arial;
+        }
+        h1 {
+            color: #3c4c5b;
+            margin: 10px 0 0 10px;
+        }
+        #pokedex, #stats {
+            display: inline-block;
+            vertical-align: top;
+        }
+        div#pokedex {
+            width: 800px;
+            margin: 10px;
+        }
+            .pokemon {
+                display: inline-block;
+            }
+            .pokemon * {
+                display: block;
+            }
+            div.pokemon {
+                width: 140px;
+                height: 140px;
+                margin: 15px 0 0 10px;
+            }
+                span#num {
+                    color: #215aa4;
+                    font-size: 0.8em;
+                    text-align: center;
+                }
+                img.sprites {
+                    margin: 0 auto;
+                }
+                img.sprites:hover {
+                    cursor: pointer;
+                    padding: 5px;
+                }
+        div#stats {
+            width: 180px;
+            position: fixed;
+            margin: 10px 0 0 60px;
+        }
+            h2, sup {
+                display: inline-block;
+            }
+            h2, h4 {
+                color: #3c4c5b;
+                text-transform: capitalize;
+            }
+            ul {
+                list-style: none;
+            }
+            sup, ul, p {
+                color: #215aa4;
+            }
+            h4 {
+                margin: 10px 0 2px 0;
+            }
+                ul#stats li {
+                    width: 100px;
+                }
+                    li span {
+                        float: right;
+                    }
+    </style>
+</head>
+<body>
+    <h1>Pokedex</h1>
+    <div id="pokedex"></div>
+    <div id="stats"></div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+h1 {
+    color: #3c4c5b;
+    font-size: 2.2em;
+    margin: 100px 0 15px 50px;
+}
+table#users {
+    color: #3c4c5b;
+    border-collapse: collapse;
+    margin-left: 50px;
+}
+    th, td {
+        height: 40px;
+        font-size: 1.2em;
+        text-align: center;
+    }
+    th {
+        color: white;
+        background-color: #009ac7;
+    }
+        a {
+            color: #009ac7;
+            margin-right: 6px;
+            display: inline-block;
+        }
+        a:hover {
+            color: #007394;
+        }
+        a:active {
+            color: #009ac7;
+        }
+a#new, a#back, a#show, a#edit {
+    font-size: 1.3em;
+    margin: 40px 0 0 50px;
+}
+a#back1, a#del {
+    font-size: 1.3em;
+    border-left: 2px solid #009ac7;
+    margin: 0 0 0 15px;
+    padding-left: 15px;
+}
+
+form {
+    width: 260px;
+    margin-left: 50px;
+}
+    form * {
+        display: block;
+    }
+    form label {
+        color: #3c4c5b;
+        font-size: 1.2em;
+        margin-bottom: 5px;
+    }
+    form input[type="text"] {
+        width: 240px;
+        color: #3c4c5b;
+        font-size: 1.2em;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        outline: none;
+        padding: 5px 8px;
+        margin-bottom: 25px;
+    }
+    input[type="submit"] {
+        color: white;
+        background-color: #009ac7;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 3px;
+        box-shadow: 1px 1px 2px #ccc;
+        margin-top: 30px;
+        padding: 4px 10px;
+    }
+    input[type="submit"]:hover {
+        cursor: pointer;
+        background-color: #007394;
+    }
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 100px #fff inset;
+    }
+
+ul {
+    list-style: none;
+    font-size: 1.5em;
+    margin-left: 50px;
+}
+    li {
+        margin-bottom: 15px;
+    }
+        b {
+            color: #009ac7;
+        }
+
+p.error {
+    color: orangered;
+    position: absolute;
+}
+p#first_error {
+    top: 220px;
+    left: 50px;
+}
+p#last_error {
+    top: 305px;
+    left: 50px;
+}
+p#email_error {
+    top: 390px;
+    left: 50px;
+}

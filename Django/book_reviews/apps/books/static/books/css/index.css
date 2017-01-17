@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+    color: #3c4c5b;
+}
+h1 {
+    margin: 20px 0 0 50px;
+}
+form {
+    width: 400px;
+    margin-left: 50px;
+}
+    form * {
+        display: inline-block;
+    }
+    h2 {
+        width: 300px;
+        margin-bottom: 15px;
+    }
+    label {
+        width: 105px;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px;
+    }
+    input {
+        width: 250px;
+        color: #3c4c5b;
+        font-size: 1.1em;
+        outline: none;
+        border: 1px solid silver;
+        border-radius: 2px;
+        padding: 2px 5px;
+        margin-bottom: 25px;
+    }
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 100px #fff inset;
+    }
+    p {
+        margin-bottom: 15px;
+    }
+        p span {
+            color: white;
+            background-color: #009ac7;
+            font-weight: bold;
+            border-radius: 2px;
+            padding: 0 8px;
+        }
+    button {
+        font-size: 1em;
+        color: white;
+        background-color: #009ac7;
+        border: none;
+        border-radius: 2px;
+        outline: none;
+        box-shadow: 1px 1px 2px silver;
+        cursor: pointer;
+        margin-left: 295px;
+        padding: 4px 10px;
+    }
+    button:hover {
+        background-color: #007394;
+    }
+form#register {
+    padding-top: 20px;
+    border-top: 1px solid silver;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+form#login {
+    padding-top: 20px;
+    border-top: 1px solid silver;
+}
+    #login button {
+        width: 80px;
+    }
+p.error {
+    color: orangered;
+    position: absolute;
+}
+p.name {
+    top: 163px;
+    left: 170px;
+}
+p.alias {
+    top: 214px;
+    left: 170px;
+}
+p.email {
+    top: 264px;
+    left: 170px;
+}
+p.pw {
+    top: 315px;
+    left: 170px;
+}
+p.confirm {
+    top: 366px;
+    left: 170px;
+}
+p.register {
+    top: 264px;
+    left: 170px;
+}
+p.login_email {
+    top: 588px;
+    left: 170px;
+}
+p.login_pw {
+    top: 640px;
+    left: 170px;
+}

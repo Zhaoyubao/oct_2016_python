@@ -1,0 +1,31 @@
+<ul>
+{% for i in range(pages) %}
+    {% if page == i+1 %}
+        <li id="{{ loop.index }}" class="page_cur">{{ loop.index }}</li>
+    {% else %}
+        <li id="{{ loop.index }}">{{ loop.index }}</li>
+    {% endif %}
+{% endfor %}
+</ul>
+<table id="leads" width="950">
+    <thead id="header">
+        <th width="50">id</th>
+        <th width="160">First Name</th>
+        <th width="160">Last Name</th>
+        <th width="180">Registered Datetime</th>
+        <th width="400">Email Address</th>
+    </thead>
+    <tbody>
+    {% if leads != '' %}
+        {% for lead in leads %}
+            <tr>
+                <td>{{ lead['leads_id'] }}</td>
+                <td>{{ lead['first_name'] }}</td>
+                <td>{{ lead['last_name'] }}</td>
+                <td>{{ lead['registered_datetime'].strftime('%Y %b %d') }}</td>
+                <td>{{ lead['email'] }}</td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+    </tbody>
+</table>

@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+    color: #007db8;
+}
+h2#error {
+    color: white;
+    background-color: orangered;
+    border-radius: 2px;
+    box-shadow: 2px 2px 4px #ccc;
+    padding: 10px 70px;
+    top: 170px;
+    left: 580px;
+    position: absolute;
+}
+form {
+    width: 500px;
+    margin: 250px auto ;
+    padding: 20px;
+}
+    label {
+        font-size: 1.4em;
+    }
+        input {
+            width: 300px;
+            color: #3C4C5B;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            outline: none;
+            padding: 4px 10px;
+            display: inline-block;
+        }
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 100px #fff inset;
+        }
+
+    #submit {
+        width: 95px;
+        color: white;
+        background-color: #007db8;
+        font-weight: bold;
+        border: 2px solid #007db8;
+        border-radius: 2px;
+        box-shadow: 2px 2px 2px #ccc;
+        padding: 4px 10px;
+        margin: 25px 0 0 390px;
+    }
+    #submit:hover {
+        color: #007db8;
+        cursor: pointer;
+        background-color: white;
+        box-shadow: 4px 4px 6px #bbb;
+    }
+div {
+    width: 700px;
+    margin: 100px auto 0 auto;
+}
+    h2#success {
+        width: 400px;
+        font-size: 1.4em;
+        color: white;
+        background-color: green;
+        border-radius: 2px;
+        box-shadow: 2px 2px 4px #ccc;
+        padding: 15px 40px;
+        margin: 0 auto 30px auto;
+    }
+    .email {
+        font-size: 1.2em;
+        margin: 20px 0 0 40px;
+        display: inline-block;
+    }
+    a {
+        color: white;
+        background-color: #007db8;
+        font-weight: bold;
+        text-decoration: none;
+        border: 2px solid #007db8;
+        border-radius: 2px;
+        box-shadow: 2px 2px 2px #ccc;
+        padding: 4px 8px;
+    }
+    a#remove {
+        font-size: 0.7em;
+        margin-left: 30px;
+        display: inline-block;
+    }
+    a#back {
+        width: 65px;
+        font-size: 1em;
+        margin: 50px 0 0 40px;
+        display: block;
+    }
+    a:hover {
+        color: #007db8;
+        cursor: pointer;
+        background-color: white;
+        box-shadow: 4px 4px 6px #bbb;
+    }

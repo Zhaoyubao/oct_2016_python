@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Flask+MySQL">
+    <title>Email Validation with DB</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <h2 id="{{ category }}">{{ message }}</h2>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="/emails/create" method="post">
+        <label>Email Address:
+            <input id="email" type="text" name="email" placeholder="ex: name@example.com">
+        </label>
+        <input id="submit" type="submit" value="Submit">
+    </form>
+</body>
+</html>

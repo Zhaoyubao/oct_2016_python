@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax Posts</title>
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/style.css">
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('form').submit(function(event) {
+                event.preventDefault();
+                console.log("Textarea:", $('textarea').val());
+                console.log("Serialized:", $(this).serialize());
+                if($('textarea').val().replace(/\s/g, '')) {
+                    $.post('/posts/create', $(this).serialize(), function(res) {
+                        $('#posts').html(res);
+                    });
+                }
+                else console.log("Nothing in textarea...");
+            $('textarea').val("");
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>My Posts</h1>
+    <form action="/posts/create" method="post">
+        <span>Add a note:</span>
+        <textarea name="post" placeholder="Wanna say something?"></textarea>
+        <input type="submit" value="Post It!">
+    </form>
+    <div id="posts">
+    {% for post in posts %}
+        <div class="post">
+            <p class="description">{{ post['description'] }}</p>
+            <p class="created">{{ post['created_at'].strftime('%b %d %Y - %H:%M %p') }}</p>
+        </div>
+    {% endfor %}
+    </div>
+</body>
+</html>

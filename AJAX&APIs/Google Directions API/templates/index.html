@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Google Direction API</title>
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <!-- <link rel="stylesheet" href="../static/style.css"> -->
+</head>
+<body>
+    <form action="/maps/directions" method="post">
+        <label for="from">From:</label>
+        <input id="from" type="text" name="origin">
+        <label for="to">To:</label>
+        <input id="to" type="text" name="destination">
+        <button>Get directions!</button>
+    </form>
+    <span id="msg_from"></span>
+    <span id="msg_to"></span>
+    <div id="directions">
+    </div>
+</body>
+</html>

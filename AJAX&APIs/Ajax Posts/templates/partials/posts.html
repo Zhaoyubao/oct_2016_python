@@ -1,0 +1,6 @@
+{% for post in posts %}
+    <div class="post">
+        <p class="description">{{ post['description'] }}</p>
+        <p class="created">{{ post['created_at'].strftime('%b %d %Y - %H:%M %p') }}</p>
+    </div>
+{% endfor %}

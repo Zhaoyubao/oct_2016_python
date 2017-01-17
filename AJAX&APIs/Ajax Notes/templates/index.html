@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax Notes</title>
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <!-- <link rel="stylesheet" href="../static/style.css"> -->
+</head>
+<body>
+    <h1>Notes</h1>
+    <form id="add">
+        <input type="text" name="title" placeholder="Insert note title here...">
+        <button id="add">Add Note</button>
+    </form>
+    <div id="tip">Click to edit!</div>
+    <div id="notes">
+    {% for note in notes %}
+        <div class="note">
+            <form id="{{ note['id'] }}" class="note">
+                <input class="title" name="title" value="{{ note['title'] }}">
+                <p class="created">Updated at: {{ note['created_at'].strftime('%d %b %Y - %H:%M %p') }}</p>
+                <textarea name="description" placeholder="Enter description here...">{{ note['description'] }}</textarea>
+            </form>
+            <b id="{{ note['id'] }}">Delete</b>
+        </div>
+    {% endfor %}
+    </div>
+</body>
+</html>

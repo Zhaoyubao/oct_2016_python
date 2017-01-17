@@ -1,0 +1,10 @@
+{% for note in notes %}
+    <div class="note">
+        <form id="{{ note['id'] }}" class="note">
+            <input class="title" name="title" value="{{ note['title'] }}">
+            <p class="created">Updated at: {{ note['created_at'].strftime('%d %b %Y - %H:%M %p') }}</p>
+            <textarea name="description" placeholder="Enter description here...">{{ note['description'] }}</textarea>
+        </form>
+        <b id="{{ note['id'] }}">Delete</b>
+    </div>
+{% endfor %}

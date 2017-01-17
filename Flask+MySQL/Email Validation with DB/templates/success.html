@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Flask+MySQL">
+    <title>Email Validation with DB</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+</head>
+<body>
+    <div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <h2 id="{{ category }}">{{ message }}</h2>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <p style="text-decoration:underline;font-size:1.6em;">Email Addresses Entered:</p>
+        {% for email in emails %}
+            <p class="email">{{ email['email'] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ email['created_at'] }}</p>
+            <a id="remove" href="/emails/{{ email['id'] }}/delete">Remove</a>
+        {% endfor %}
+        <a id="back" href="/">Go Back</a>
+    </div>
+</body>
+</html>

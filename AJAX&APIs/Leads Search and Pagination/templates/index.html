@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Leads Search and Pagination</title>
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <!-- <link rel="stylesheet" href="../static/style.css"> -->
+</head>
+<body>
+    <p>Choose date from &nbsp;2011.01.01&nbsp; to &nbsp;2013.11.25</p>
+    <form onkeydown="if(event.keyCode==13) return false;">
+        <label for="name">Name:</label>
+        <input id="name" type="text" name="name">
+        <label for="from">From:</label>
+        <input id="from" type="date" name="from_date" min="2011-01-01" max="2013-11-30">
+        <label for="to">To:</label>
+        <input id="to" type="date" name="to_date" min="2011-01-01" max="2013-11-30">
+    </form>
+    <div id="leads">
+        <ul></ul>
+        <table id="leads" width="950">
+            <thead id="header">
+                <th width="50">id</th>
+                <th width="160">First Name</th>
+                <th width="160">Last Name</th>
+                <th width="180">Registered Datetime</th>
+                <th width="400">Email Address</th>
+            </thead>
+        </table>
+    </div>
+</body>
+</html>

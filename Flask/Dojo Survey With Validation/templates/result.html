@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dojo Survey</title>
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div>
+        <p id="title">Submitted Info</p>
+        <ul id="item">
+            <li>Name:</li>
+            <li>Dojo Location:</li>
+            <li>Favorite Language:</li>
+            <li>Comment:</li>
+        </ul>
+        <ul id="user">
+            <li>{{ user['username'].upper() }}</li>
+            <li>{{ user['location'] }}</li>
+            <li>{{ user['language'] }}</li>
+            <li>{{ user['comment'] }}</li>
+        </ul>
+        <a href="/">Go Back</a>
+    </div>
+</body>
+</html>

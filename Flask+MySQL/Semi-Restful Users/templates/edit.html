@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Flask+MySQL">
+    <title>Edit User</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="../static/style.css"> -->
+</head>
+<body>
+    <h1>Edit User {{ id }}</h1>
+    <form action="/users/{{ id }}" method="post">
+        <label for="first">First name:</label>
+        <input id="first" type="text" name="first_name">
+        <label for="last">Last name:</label>
+        <input id="last" type="text" name="last_name">
+        <label for="email">Email:</label>
+        <input id="email" type="text" name="email">
+        <input type="submit" value="Update">
+    </form>
+    <a id="show" href="/users/{{ id }}">Show</a>
+    <a id="back1" href="/users">Go Back</a>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  		{% if messages %}
+	    	{% for category, message in messages %}
+				<p class="error" id="{{ category }}">{{ message }}</p>
+	    	{% endfor %}
+  		{% endif %}
+	{% endwith %}
+</body>
+</html>

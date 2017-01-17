@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Belt Reviewer">
+    <title>Book Reviews</title>
+    <!-- <link rel="stylesheet" href="../../static/books/css/index.css"> -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'books/css/index.css' %}">
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <form id="register" action="/register" method="post"> {% csrf_token %}
+        <h2>Registration</h2>
+        <label>Name:</label>
+        <input type="text" name="name">
+        <label>Alias:</label>
+        <input type="text" name="alias">
+        <label>Email:</label>
+        <input type="text" name="email" placeholder="ex:name@example.com">
+        <label>Password:</label>
+        <input type="password" name="pw">
+        <label>Confirm pw:</label>
+        <input type="password" name="pw_confirm">
+        <p><span>i</span>&nbsp; Passwords must be at least 8 characters in length and should not contain whitespace.</p>
+        <button type="submit">Register</button>
+    </form>
+    <form id="login" action="/login" method="post"> {% csrf_token %}
+        <h2>Login</h2>
+        <label>Email:</label>
+        <input type="text" name="email">
+        <label>Password:</label>
+        <input type="password" name="pw">
+        <button type="submit">Login</button>
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

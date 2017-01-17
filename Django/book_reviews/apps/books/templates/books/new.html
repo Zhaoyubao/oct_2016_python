@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Belt Reviewer">
+    <title>Book Reviews</title>
+    <!-- <link rel="stylesheet" href="../../static/books/css/new.css"> -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'books/css/new.css' %}">
+</head>
+<body>
+    <a id="back" href="/">Home</a>
+    <a href="/logout">Logout</a>
+    <h2>Add a New Book Title and a Review:</h2>
+    <form action="/books/create" method="post"> {% csrf_token %}
+        <label id="title">Book Title:</label>
+        <input id="title" type="text" name="title">
+        <p>Author:</p>
+        <label class="author">Choose from a list:</label>
+        <select name="preset">
+            <option value="" selected="selected"></option>
+        {% for author in authors %}
+            <option value="{{ author.name }}">{{ author.name|title }}</option>
+        {% endfor %}
+        </select>
+        <label class="author">Or add a new author:</label>
+        <input type="text" name="author">
+        <label id="review">Review:</label>
+        <textarea name="review"></textarea>
+        <label id="rate">Rating:</label>
+        <input id="rate" type="number" name="rating" min="1" max="5"> stars
+        <button type="submit">Add Book and Review</button>
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

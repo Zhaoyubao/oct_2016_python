@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Flask+MySQL">
+    <title>Show User</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="../static/style.css"> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <h1>User {{ user[0]['id'] }}</h1>
+    <ul>
+        <li><b>Full Name:</b> &nbsp;&nbsp;&nbsp;{{ user[0]['full_name'] }}</li>
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Email:</b> &nbsp;&nbsp;&nbsp;{{ user[0]['email'] }}</li>
+        <li><b>Created at:</b> &nbsp;&nbsp;&nbsp;{{ user[0]['created'] }}</li>
+    </ul>
+    <a id="edit" href="/users/{{ id }}/edit">Edit</a>
+    <a id="del" href="/users/{{ id }}/destroy" onClick=deleteConfirm()>Delete</a>
+    <a id="back1" href="/users">Go Back</a>
+</body>
+</html>

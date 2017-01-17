@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+    color: #3c4c5b;
+}
+a {
+    color: #009ac7;
+    font-size: 1.2em;
+    margin-left: 15px;
+    display: inline-block;
+}
+a#back {
+    margin: 15px 0 0 50px;
+}
+ul {
+    font-size: 1.3em;
+    list-style: none;
+    margin-top: 80px;
+    margin-left: 50px;
+}
+    ul li {
+        margin-bottom: 15px;
+    }
+p {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+ul#books {
+    font-size: 1em;
+    list-style: none;
+    margin-left: 70px;
+    margin-top: 15px;
+}
+    a {
+        color: #009ac7;
+    }
